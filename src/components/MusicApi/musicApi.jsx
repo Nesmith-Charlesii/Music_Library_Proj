@@ -35,6 +35,7 @@ class MusicApi extends Component {
                             <th>Album</th>
                             <th>Release Date</th>
                             <th>Genre</th>
+                            <th>Remove</th>
                         </tr>
                     </thead>
                 {this.state.data.map((song) => { 
@@ -45,6 +46,7 @@ class MusicApi extends Component {
                         <td>{song.album}</td>
                         <td>{song.release_date}</td>
                         <td>{song.genre}</td>
+                        <td><a className="btn btn-sm btn-danger" href="google.com">Delete</a></td>
                     </tr>
                 )}
             )}
