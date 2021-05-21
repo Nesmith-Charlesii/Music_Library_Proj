@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './musicApi.css';
 import axios from 'axios';
 
 class MusicApi extends Component {
@@ -10,13 +11,27 @@ class MusicApi extends Component {
     }
 
     componentDidMount() {
-        this.getMusicApi()
+        this.getAllMusicApi()
+
     }
 
-    getMusicApi = async () => {
+    getAllMusicApi = async () => {
         try {
             let {data} = await axios.get('http://127.0.0.1:8000/music/')
             this.setState({data: data})
+            console.log(this.state.data)
+        }
+        catch(ex) {
+            alert(`Whoops! Looks like we're having some technical difficulties. Try again later`)
+        }
+    }
+
+    deleteSongApi = async (id) => {
+        console.log(`http://127.0.0.1:8000/music/${id}/`)
+        try {
+            let {data} = await axios.delete(`http://127.0.0.1:8000/music/${id}/`)
+            console.log(data)
+            //this.setState({data: data})
             console.log(this.state.data)
         }
         catch(ex) {
@@ -38,6 +53,7 @@ class MusicApi extends Component {
                             <th>Remove</th>
                         </tr>
                     </thead>
+                    <tbody>
                 {this.state.data.map((song) => { 
                 return (
                     <tr>
@@ -46,10 +62,11 @@ class MusicApi extends Component {
                         <td>{song.album}</td>
                         <td>{song.release_date}</td>
                         <td>{song.genre}</td>
-                        <td><a className="btn btn-sm btn-danger" href="google.com">Delete</a></td>
+                        <td><button className="btn btn-sm btn-danger" onClick={() => this.deleteSongApi(song.id)}>Delete</button></td>
                     </tr>
                 )}
             )}
+                    </tbody>
                 </table>
             </div>
         )
