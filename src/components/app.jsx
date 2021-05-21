@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import MusicApi from './MusicApi/musicApi';
 
 class App extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class App extends Component {
         return(
             <div className="container-fluid">
                 <h1>Test</h1>
+                <MusicApi/>
             </div>
         )
     }
