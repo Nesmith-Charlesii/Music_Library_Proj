@@ -10,7 +10,7 @@ class App extends Component {
     render() {
         return(
             <div className="container-fluid">
-                <h1>Test</h1>
+                <h1>Music Library</h1>
                 <MusicApi/>
             </div>
         )

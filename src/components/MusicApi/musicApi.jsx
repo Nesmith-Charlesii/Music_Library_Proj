@@ -26,16 +26,29 @@ class MusicApi extends Component {
 
     render() {
         return (
-            <div className="music-library">
-                <h2>Song Library</h2>
+            <div className="music-library-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Song Title</th>
+                            <th>Artist</th>
+                            <th>Album</th>
+                            <th>Release Date</th>
+                            <th>Genre</th>
+                        </tr>
+                    </thead>
                 {this.state.data.map((song) => { 
                 return (
-                    <div className='songs'>
-                        <p>{song.title}</p>
-                        <p>{song.artist}</p>
-                    </div>
+                    <tr>
+                        <td>{song.title}</td>
+                        <td>{song.artist}</td>
+                        <td>{song.album}</td>
+                        <td>{song.release_date}</td>
+                        <td>{song.genre}</td>
+                    </tr>
                 )}
             )}
+                </table>
             </div>
         )
     }
