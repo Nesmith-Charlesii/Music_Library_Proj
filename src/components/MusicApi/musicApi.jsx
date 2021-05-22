@@ -31,8 +31,12 @@ class MusicApi extends Component {
         try {
             let {data} = await axios.delete(`http://127.0.0.1:8000/music/${id}/`)
             console.log(data)
-            //this.setState({data: data})
-            console.log(this.state.data)
+            const Data = this.state.data.filter(item => item.id !== id);
+            this.setState({
+                data: Data
+            })
+            this.componentDidMount()
+            //console.log(Data)
         }
         catch(ex) {
             alert(`Whoops! Looks like we're having some technical difficulties. Try again later`)
