@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import MusicApi from './MusicApi/musicApi';
+import MusicTable from './MusicTable/musicTable';
+import SongForm from './SongForm/songForm';
 
 class App extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class App extends Component {
             <div className="container-fluid">
                 <h1>Music Library</h1>
                 <br/>
-                <MusicApi/>
+                <MusicTable/>
+                <SongForm/>
             </div>
         )
     }
