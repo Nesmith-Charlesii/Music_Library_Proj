@@ -4,6 +4,7 @@ import axios from 'axios';
 class SongForm extends Component {
     constructor(props) {
         super(props);
+        //set all input fields to empty strings when component renders
         this.state = {
             title: '',
             artist: '',
@@ -14,15 +15,25 @@ class SongForm extends Component {
     }
 
     postSong = async () => {
+        const Song = {
+            title: this.state.title,
+            artist: this.state.artist,
+            album: this.state.album,
+            release_date: this.state.release_date,
+            genre: this.state.genre
+        }
+
         try {
-            let {data} = await axios.post('http://127.0.0.1:8000/music')
+            let {data} = await axios.post('http://127.0.0.1:8000/music', {Song})
             console.log(data)
+            alert('new song added')
         }
         catch(ex) {
             alert(`Whoops! Looks like we're having some technical difficulties. Try again later`)
         }
     }
 
+    //handleChange method sets state to the input value of data entered
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -30,8 +41,8 @@ class SongForm extends Component {
     }
 
     handleSubmit = (event) => {
-        event.preventDefault()
-
+        event.preventDefault();
+        this.postSong();
     }
 
     render() {
@@ -45,9 +56,9 @@ class SongForm extends Component {
                         <input className="form-control" type="text" name="artist" id="artist" onChange={(event) => this.handleChange(event)} value={this.state.artist}/> 
                         <label htmlFor="album">Album: </label>
                         <input className="form-control" type="text" name="album" id="album" onChange={(event) => this.handleChange(event)} value={this.state.album}/> 
-                        <label htmlFor="release_date">Release Date:</label>
+                        <label htmlFor="release_date">Release Date: </label>
                         <input className="form-control" type="text" name="release_date" id="release_date" onChange={(event) => this.handleChange(event)} value={this.state.release_date}/> 
-                        <label htmlFor="genre">Title:</label>
+                        <label htmlFor="genre">Genre: </label>
                         <input className="form-control" type="text" name="genre" id="genre" onChange={(event) => this.handleChange(event)} value={this.state.genre}/> 
                         <br/>
                         <button className="btn btn-sm btn-success">Add Song</button>
