@@ -42,20 +42,6 @@ class MusicTable extends Component {
         }
     }
 
-    postSongApi = async () => {
-        try {
-            let {data} = await axios.post(`http://127.0.0.1:8000/music/`)
-            console.log(data)
-            this.setState({
-                data: data
-            })
-            this.componentDidMount()
-        }
-        catch(ex) {
-            alert(`Whoops! Looks like we're having some technical difficulties. Try again later`)
-        }
-    }
-
     render() {
         return (
             <div className="music-library-table">
