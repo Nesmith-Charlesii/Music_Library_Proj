@@ -35,9 +35,13 @@ class SongForm extends Component {
                 release_date: this.state.release_date,
                 genre: this.state.genre
             }
+            
             //pass JSON object as second arg in POST method **No brackets around object to be passed (Song)
             let {data} = await axios.post(`http://127.0.0.1:8000/music/`, Song)
             console.log(data)
+
+            //addSong() after successful post request to ensure song is first added to db
+            this.props.addSong(Song)
             alert('new song added')
         }
         catch(ex) {

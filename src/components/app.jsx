@@ -1,20 +1,34 @@
 import React, {Component} from 'react';
 import MusicTable from './MusicTable/musicTable';
 import SongForm from './SongForm/songForm';
+import axios from 'axios';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            table: [...MusicTable]
+            data: []
         }
     }
 
-    addSong = (song)  => {
-        this.setState({
-            table: [...this.state.table, song]
-        })
-        console.log(this.state.table)
+    componentDidMount() {
+        this.getAllMusicApi()
+
+    }
+
+    getAllMusicApi = async () => {
+        try {
+            let {data} = await axios.get('http://127.0.0.1:8000/music/')
+            this.setState({data: data})
+            console.log(this.state.data)
+        }
+        catch(ex) {
+            alert(`Whoops! ${ex} Looks like we're having some technical difficulties. Try again later`)
+        }
+    }
+
+    addSong = () => {
+        this.getAllMusicApi()
     }
 
     render() {
@@ -22,8 +36,8 @@ class App extends Component {
             <div className="container-fluid">
                 <h1>Music Library</h1>
                 <br/>
-                <MusicTable/>
-                <SongForm/>
+                <MusicTable  data={this.state.data} />
+                <SongForm addSong = {(Song) => this.addSong(Song)}/>
             </div>
         )
     }

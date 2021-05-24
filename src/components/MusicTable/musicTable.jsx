@@ -5,26 +5,9 @@ import axios from 'axios';
 class MusicTable extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            data: []
-        }
+        this.state = {}
     }
 
-    componentDidMount() {
-        this.getAllMusicApi()
-
-    }
-
-    getAllMusicApi = async () => {
-        try {
-            let {data} = await axios.get('http://127.0.0.1:8000/music/')
-            this.setState({data: data})
-            console.log(this.state.data)
-        }
-        catch(ex) {
-            alert(`Whoops! Looks like we're having some technical difficulties. Try again later`)
-        }
-    }
 
     deleteSongApi = async (id) => {
         console.log(`http://127.0.0.1:8000/music/${id}/`)
@@ -57,7 +40,7 @@ class MusicTable extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                {this.state.data.map((song) => { 
+                {this.props.data.map((song) => { 
                 return (
                     <tr>
                         <td>{song.title}</td>
