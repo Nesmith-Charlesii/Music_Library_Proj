@@ -6,8 +6,15 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            table: [...MusicTable]
         }
+    }
+
+    addSong = (song)  => {
+        this.setState({
+            table: [...this.state.table, song]
+        })
+        console.log(this.state.table)
     }
 
     render() {

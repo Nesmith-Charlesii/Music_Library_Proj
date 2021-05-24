@@ -14,24 +14,6 @@ class SongForm extends Component {
         }
     }
 
-    postSong = async () => {
-        try {
-            //song properties in "" to represent JSON for POST method
-            let {data} = await axios.post(`http://127.0.0.1:8000/music/`, {
-                title: this.state.title,
-                artist: this.state.artist,
-                album: this.state.album,
-                release_date: this.state.release_date,
-                genre: this.state.genre
-            })
-            console.log(data)
-            alert('new song added')
-        }
-        catch(ex) {
-            alert(`Whoops! ${ex}. Looks like we're having some technical difficulties. Try again later`)
-        }
-    }
-
     //handleChange method sets state to the input value of data entered
     handleChange = (event) => {
         this.setState({
@@ -42,6 +24,25 @@ class SongForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.postSong();
+    }
+    
+    postSong = async () => {
+        try {
+            const Song = {
+                title: this.state.title,
+                artist: this.state.artist,
+                album: this.state.album,
+                release_date: this.state.release_date,
+                genre: this.state.genre
+            }
+            //pass JSON object as second arg in POST method **No brackets around object to be passed (Song)
+            let {data} = await axios.post(`http://127.0.0.1:8000/music/`, Song)
+            console.log(data)
+            alert('new song added')
+        }
+        catch(ex) {
+            alert(`Whoops! ${ex}. Looks like we're having some technical difficulties. Try again later`)
+        }
     }
 
     render() {
