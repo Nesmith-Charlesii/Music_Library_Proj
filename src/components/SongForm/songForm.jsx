@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './songForm.css';
 import axios from 'axios';
 
 class SongForm extends Component {
@@ -57,29 +58,28 @@ class SongForm extends Component {
 
     render() {
         return (
-            <div className = "song-form">
-                <form onSubmit = {(event) => this.handleSubmit(event)}>
-                    <div className="form-group">
-                        <label htmlFor="title">Title: </label>
-                        <input className="form-control" type="text" name="title" id="title" onChange={(event) => this.handleChange(event)} value={this.state.title} /> 
+            <form onSubmit = {(event) => this.handleSubmit(event)}>
+                <div className="form-group">
+                    <label htmlFor="title">Title: </label>
+                    <input className="form-control" type="text" name="title" id="title" onChange={(event) => this.handleChange(event)} value={this.state.title} /> 
 
-                        <label htmlFor="artist">Artist: </label>
-                        <input className="form-control" type="text" name="artist" id="artist" onChange={(event) => this.handleChange(event)} value={this.state.artist}/> 
+                    <label htmlFor="artist">Artist: </label>
+                    <input className="form-control" type="text" name="artist" id="artist" onChange={(event) => this.handleChange(event)} value={this.state.artist}/> 
 
-                        <label htmlFor="album">Album: </label>
-                        <input className="form-control" type="text" name="album" id="album" onChange={(event) => this.handleChange(event)} value={this.state.album}/> 
+                    <label htmlFor="album">Album: </label>
+                    <input className="form-control" type="text" name="album" id="album" onChange={(event) => this.handleChange(event)} value={this.state.album}/> 
 
-                        <label htmlFor="release_date">Release Date: </label>
-                        <input className="form-control" type="text" name="release_date" id="release_date" onChange={(event) => this.handleChange(event)} value={this.state.release_date}/> 
+                    <label htmlFor="release_date">Release Date: </label>
+                    <input className="form-control" type="text" name="release_date" id="release_date" onChange={(event) => this.handleChange(event)} value={this.state.release_date}/> 
 
-                        <label htmlFor="genre">Genre: </label>
-                        <input className="form-control" type="text" name="genre" id="genre" onChange={(event) => this.handleChange(event)} value={this.state.genre}/> 
-                        
-                        <br/>
-                        <button className="btn btn-sm btn-success">Add Song</button>
-                    </div>
-                </form>
-            </div>
+                    <label htmlFor="genre">Genre: </label>
+                    <input className="form-control" type="text" name="genre" id="genre" onChange={(event) => this.handleChange(event)} value={this.state.genre}/> 
+                    
+                    <br/>
+                    <button className="btn btn-sm btn-outline-primary">Add Song</button>
+                </div>
+            </form>
+            
         )
     }
 }

@@ -1,0 +1,13 @@
+form {
+    color: white;
+    width: 40vw;
+}
+
+form label {
+    padding-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form input {
+    margin-bottom: 20px;
+}

@@ -66,14 +66,20 @@ class App extends Component {
         return(
             <div className="container-fluid">
                 <div className="row">
-                    <h1 className="my-3 mx-3">Music Library</h1>
+                    <h1 className="header my-5 mx-5">Music Library</h1>
                 </div>
-                <div className="search-bar">
+                <div className="search-bar my-4">
                     <SearchBar getAllMusicApi = {() => this.getAllMusicApi()} filter = {(search) => this.filter(search)} />
                 </div>
-                <br/>
-                <MusicTable  data={this.state.data} deleteSongApi={(id) => this.deleteSongApi(id)} />
-                <SongForm addSong = {() => this.addSong()}/>
+                <div className="music-row my-5">
+                    <div className="music-table">
+                        <MusicTable  data={this.state.data} deleteSongApi={(id) => this.deleteSongApi(id)} />
+                    </div>
+                    <div className="song-form">
+                        <SongForm addSong = {() => this.addSong()}/>
+                    </div>
+                </div>
+                
             </div>
         )
     }
