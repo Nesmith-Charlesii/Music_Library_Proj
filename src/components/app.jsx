@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import MusicTable from './MusicTable/musicTable';
 import SongForm from './SongForm/songForm';
 import SearchBar from './SearchBar/searchBar';
+// Add bootstrap in App Component before CSS so that CSS will overwrite unwanted bootstrap
+import 'bootstrap/dist/css/bootstrap.css';
+import './app.css';
 import axios from 'axios';
 
 class App extends Component {
@@ -62,9 +65,13 @@ class App extends Component {
     render() {
         return(
             <div className="container-fluid">
-                <h1>Music Library</h1>
+                <div className="row">
+                    <h1 className="my-3 mx-3">Music Library</h1>
+                </div>
+                <div className="search-bar">
+                    <SearchBar getAllMusicApi = {() => this.getAllMusicApi()} filter = {(search) => this.filter(search)} />
+                </div>
                 <br/>
-                <SearchBar  getAllMusicApi = {() => this.getAllMusicApi()} filter = {(search) => this.filter(search)} />
                 <MusicTable  data={this.state.data} deleteSongApi={(id) => this.deleteSongApi(id)} />
                 <SongForm addSong = {() => this.addSong()}/>
             </div>

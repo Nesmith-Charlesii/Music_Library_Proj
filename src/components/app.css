@@ -1,0 +1,14 @@
+.container-fluid {
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+body {
+    background-image: linear-gradient(rgb(20, 20, 20), rgb(40, 40, 40), rgb(60, 60, 60))
+}
+
+.search-bar {
+    width: 30vw;
+    margin-right: auto;
+    margin-left: auto;
+}
