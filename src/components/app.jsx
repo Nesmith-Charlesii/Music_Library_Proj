@@ -8,7 +8,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            search: ''
         }
     }
 
@@ -44,12 +45,26 @@ class App extends Component {
         this.getAllMusicApi()
     }
 
+    filter = (search) => {
+        console.log(`Reached filter method looking for ${search}`, this.state.data)
+        const data = this.state.data.filter(key =>
+            key.title.includes(search) ||
+            key.artist.includes(search) ||
+            key.album.includes(search) ||
+            key.release_date.includes(search) ||
+            key.genre.includes(search) 
+        )
+        this.setState({
+            data: data
+        })
+    }
+
     render() {
         return(
             <div className="container-fluid">
                 <h1>Music Library</h1>
                 <br/>
-                <SearchBar/>
+                <SearchBar  getAllMusicApi = {() => this.getAllMusicApi()} filter = {(search) => this.filter(search)} />
                 <MusicTable  data={this.state.data} deleteSongApi={(id) => this.deleteSongApi(id)} />
                 <SongForm addSong = {() => this.addSong()}/>
             </div>

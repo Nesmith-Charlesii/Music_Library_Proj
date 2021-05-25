@@ -1,30 +1,43 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const SearchBar = (props) => {
-    return(
-        <div className="search-bar">
-            <form>
-                <div className="form-group col-5">
-                <label htmlFor="title">By Title</label>
-                    <input className="form-control" type="text" name="title" id="title"/>
+class SearchBar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            search: ''
+        }
+    }
 
-                    <label htmlFor="artist">By Artist</label>
-                    <input className="form-control" type="text" name="artist" id="artist"/>
+    handleChange = (event) => {
+        console.log(event.target.value)
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+        if(event.target.value === '') {
+            this.props.getAllMusicApi()
+        }
+        this.props.filter(this.state.search)
+    }
 
-                    <label htmlFor="album">By Album</label>
-                    <input className="form-control" type="text" name="album" id="album"/>
+    handleSubmit = (event) => {
+        event.preventDefault();
+        //this.props.filter(this.state.search)
+    }
 
-                    <label htmlFor="release date">By Release Date</label>
-                    <input className="form-control" type="text" name="release_date" id="release_date"/>
-
-                    <label htmlFor="genre">By Genre</label>
-                    <input className="form-control" type="text" name="genre" id="genre"/>
-                    <br/>
-                    <button className="btn btn-sm btn-secondary">Search</button>
-                </div>
-            </form>
-        </div>
-    )
+    render() {
+        return(
+            <div className="search-bar">
+                <form onSubmit={(event) => this.handleSubmit(event)} >
+                    <div className="form-group col-3">
+                        <label htmlFor="search">Search: </label>
+                        <input className="form-control" type="text" name="search" id="search" onChange={(event) => this.handleChange(event)} value={this.state.search} />
+                        <br/>
+                        <button className="btn btn-sm btn-secondary">Search</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
 }
 
 export default SearchBar;
